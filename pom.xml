@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.vieira</groupId>
+    <artifactId>junit-bbl</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <properties>
+        <junit.version>5.7.0</junit.version>
+        <junit-legacy.version>4.12</junit-legacy.version>
+    </properties>
+    <name>junit-bbl</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit-legacy.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
