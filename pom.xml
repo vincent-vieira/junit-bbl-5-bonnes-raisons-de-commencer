@@ -5,11 +5,21 @@
     <artifactId>junit-bbl</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
+    <name>junit-bbl</name>
+
+    <modules>
+        <module>initial-project</module>
+        <module>refactored-solution</module>
+    </modules>
+
     <properties>
         <junit.version>5.7.0</junit.version>
         <junit-legacy.version>4.12</junit-legacy.version>
+        <spring-boot.version>2.4.0</spring-boot.version>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
-    <name>junit-bbl</name>
 
     <dependencyManagement>
         <dependencies>
@@ -17,6 +27,13 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
