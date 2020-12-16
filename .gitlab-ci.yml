@@ -1,7 +1,7 @@
 variables:
     projects: "getting-started,refactored-solution"
 
-image: maven:3.6.3-jdk-15
+image: maven:3.6.3-openjdk-15
 
 test:
     script: "mvn clean test -B -pl $projects"
