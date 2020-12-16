@@ -3,8 +3,7 @@ package io.vieira.todo;
 import io.vieira.todo.models.Todo;
 import io.vieira.todo.models.TodoData;
 import org.junit.Ignore;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.migrationsupport.conditions.IgnoreCondition;
 import org.mockito.InjectMocks;
@@ -22,6 +21,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(IgnoreCondition.class)
+@DisplayName("Todos service")
 class DefaultTodosServiceTest {
 
     @Mock
@@ -31,6 +31,7 @@ class DefaultTodosServiceTest {
     private DefaultTodosService todosService;
 
     @Test
+    @DisplayName("should find todos")
     void shouldFindTodos() {
         final var sampleId = UUID.randomUUID();
         when(todosRepository.findAll()).thenReturn(List.of(new TodoData(sampleId, "Title", 1, false)));
@@ -45,6 +46,7 @@ class DefaultTodosServiceTest {
 
     // This could be a parameterized test, but is not for the sake of the demo.
     @Test
+    @DisplayName("should find a todo")
     void shouldFindATodo() {
         final var sampleId = UUID.randomUUID();
         when(todosRepository.findById(eq(sampleId))).thenReturn(Optional.of(new TodoData(sampleId, "Title", 1, false)));
@@ -59,12 +61,14 @@ class DefaultTodosServiceTest {
 
     @Disabled
     @Test
+    @DisplayName("should be implemented")
     void shouldBeImplemented() {
         fail("This is a test");
     }
 
     @Ignore
     @Test
+    @DisplayName("should also be implemented")
     void shouldBeAlsoImplemented() {
         fail("This is another test");
     }

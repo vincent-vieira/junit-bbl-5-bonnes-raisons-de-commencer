@@ -2,6 +2,7 @@ package io.vieira.todo.mvc;
 
 import io.vieira.todo.TodosService;
 import io.vieira.todo.models.Todo;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(TodosController.class)
+@DisplayName("Todos controller")
 class TodosControllerTest {
 
     @Autowired
@@ -31,6 +33,7 @@ class TodosControllerTest {
     private TodosService todosService;
 
     @Test
+    @DisplayName("should return todos")
     void givenTodosShouldBeReturnedWhenGettingThem() throws Exception {
         when(todosService.findTodos()).thenReturn(List.of(
                 new Todo(UUID.fromString("1f3d564d-aeb8-4fd2-ba89-0065a8f9a9b4"), "Title 1", 1, false),
@@ -53,6 +56,7 @@ class TodosControllerTest {
     }
 
     @Test
+    @DisplayName("should return a known todo")
     void givenAnKnownIdShouldReturnATodo() throws Exception {
         final var sampleId = UUID.fromString("1f3d564d-aeb8-4fd2-ba89-0065a8f9a9b4");
         when(todosService.findTodo(eq(sampleId))).thenReturn(Optional.of(new Todo(
@@ -74,6 +78,7 @@ class TodosControllerTest {
     }
 
     @Test
+    @DisplayName("should not return an unknown todo")
     // This could be a parameterized test, but is not for the sake of the demo.
     public void givenAnUnknownIdShouldNotReturnAnyTodo() throws Exception {
         when(todosService.findTodo(any())).thenReturn(Optional.empty());

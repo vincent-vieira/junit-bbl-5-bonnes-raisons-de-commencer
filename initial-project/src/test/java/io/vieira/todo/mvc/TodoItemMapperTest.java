@@ -74,7 +74,7 @@ public class TodoItemMapperTest {
 
     @Test
     // For the sake of the demo. This test is kinda useless otherwise
-    public void shouldNotGenerateATodoIfNullIsPassed() {
+    public void shouldNotGenerateATodoIfNull() {
         expectedException.expect(NullPointerException.class);
 
         final var mapper = new TodoItemMapper(baseUrl);

@@ -2,6 +2,7 @@ package io.vieira.todo.mvc;
 
 import io.vieira.todo.models.Todo;
 import io.vieira.todo.models.TodoItem;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("Todo item mapper")
 class TodoItemMapperTest {
 
     @Mock
@@ -33,7 +35,8 @@ class TodoItemMapperTest {
         return Stream.of("/todos", "/io.vieira.todo", "/test").map(Arguments::of);
     }
 
-    @ParameterizedTest
+    @DisplayName("should generate todo with url")
+    @ParameterizedTest(name = "of value {0}")
     @MethodSource("baseUrls")
     @ValueSource(strings = {"/todos", "/io.vieira.todo", "/test"})
     @CsvSource("/todos, /io.vieira.todo, /test")
@@ -60,10 +63,11 @@ class TodoItemMapperTest {
         inOrder.verifyNoMoreInteractions();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "of value {0}")
+    @DisplayName("should not generate a todo if it is")
     @NullSource
     // For the sake of the demo. This test is kinda useless otherwise
-    void shouldNotGenerateATodoIfNullIsPassed(Todo todoItem) {
+    void shouldNotGenerateATodoIfNull(Todo todoItem) {
         final var mapper = new TodoItemMapper("");
 
         assertThrows(NullPointerException.class, () -> mapper.apply(componentsBuilder).apply(todoItem));
