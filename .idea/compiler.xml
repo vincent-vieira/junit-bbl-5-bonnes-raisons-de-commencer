@@ -8,9 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="refactored-solution" />
         <module name="initial-project" />
+        <module name="getting-started" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="getting-started" target="15" />
       <module name="initial-project" target="15" />
       <module name="junit-bbl" target="15" />
       <module name="refactored-solution" target="15" />

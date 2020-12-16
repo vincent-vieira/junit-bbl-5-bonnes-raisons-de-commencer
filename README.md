@@ -14,11 +14,15 @@ Afin d'avoir une expérience optimale avec ce kata, il est nécessaire *a minima
 ### A propos du BBL
 
 #### Migrer depuis JUnit 4
-Vintage engine
+Vintage engine + migration support librairie
+
 Hooks cycle de vie
+
 @Test
+
 @Ignore -> @Disabled
-@Rule 
+
+@Rule
 - exception handling
 - Mockito and Spring
 
