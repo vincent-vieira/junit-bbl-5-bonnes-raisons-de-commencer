@@ -18,19 +18,20 @@ Vintage engine
 Hooks cycle de vie
 @Test
 @Ignore -> @Disabled
-@Rule (exception handling) (temp File ???)
-
-#### Des noms de test lisibles, enfin !
-@DisplayName
-Name generation ??
+@Rule 
+- exception handling
+- Mockito and Spring
 
 #### Découvrir le nouveau système d'extensions
 Mockito
 Spring
 
-#### Tests imbriqués
-@Nested
-
 #### Tests paramétrés
 Null/CSV/Value/Method source
-Naming
+
+#### Des noms de test lisibles, enfin !
+@DisplayName
+Name generation ??
+
+#### Tests imbriqués
+@Nested

@@ -4,6 +4,7 @@ import io.vieira.todo.models.Todo;
 import io.vieira.todo.models.TodoItem;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
@@ -27,11 +28,12 @@ import static org.mockito.Mockito.when;
 public class TodoItemMapperTest {
 
     private final String baseUrl;
-    private final Todo todo;
-    private final TodoItem expectedItem;
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Mock
     private UriComponentsBuilder componentsBuilder;
@@ -39,39 +41,26 @@ public class TodoItemMapperTest {
     @Mock
     private UriComponents uriComponents;
 
-    public TodoItemMapperTest(String baseUrl, Todo todo, TodoItem expectedItem) {
+    public TodoItemMapperTest(String baseUrl) {
         this.baseUrl = baseUrl;
-        this.todo = todo;
-        this.expectedItem = expectedItem;
     }
 
     @Parameterized.Parameters
     public static List<Object[]> baseUrls() {
-        return Stream
-                .of(
-                        UUID.randomUUID(),
-                        UUID.randomUUID(),
-                        UUID.randomUUID()
-                )
-                .flatMap(uuid -> Stream
-                        .of("/todos", "/io.vieira.todo", "/test")
-                        .map(baseUrl -> new Object[]{
-                                baseUrl,
-                                new Todo(uuid, "Title", 1, false),
-                                new TodoItem(uuid, "Title", 1, false, "http://localhost" + baseUrl + "/" + uuid)
-                        })
-                )
-                .collect(Collectors.toList());
+        return Stream.of("/todos", "/io.vieira.todo", "/test", "").map(value -> new Object[]{value}).collect(Collectors.toList());
     }
 
     @Test
     public void shouldGenerateTheProperUrlForATodo() {
+        final var uuid = UUID.randomUUID();
+        final var expectedItem = new TodoItem(uuid, "Title", 1, false, "http://localhost" + baseUrl + "/" + uuid);
         when(componentsBuilder.replacePath(any())).thenReturn(componentsBuilder);
         when(componentsBuilder.pathSegment(any())).thenReturn(componentsBuilder);
         when(uriComponents.toUriString()).thenReturn(expectedItem.getUrl());
         when(componentsBuilder.build()).thenReturn(uriComponents);
 
         final var mapper = new TodoItemMapper(baseUrl);
+        final var todo = new Todo(uuid, "Title", 1, false);
         assertEquals(expectedItem, mapper.apply(componentsBuilder).apply(todo));
 
         final var inOrder = inOrder(componentsBuilder, uriComponents);
@@ -81,5 +70,14 @@ public class TodoItemMapperTest {
         inOrder.verify(uriComponents).toUriString();
 
         inOrder.verifyNoMoreInteractions();
+    }
+
+    @Test
+    // For the sake of the demo. This test is kinda useless otherwise
+    public void shouldNotGenerateATodoIfNullIsPassed() {
+        expectedException.expect(NullPointerException.class);
+
+        final var mapper = new TodoItemMapper(baseUrl);
+        mapper.apply(componentsBuilder).apply(null);
     }
 }

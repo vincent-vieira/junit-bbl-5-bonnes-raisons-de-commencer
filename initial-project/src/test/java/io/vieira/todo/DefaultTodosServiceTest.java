@@ -2,6 +2,7 @@ package io.vieira.todo;
 
 import io.vieira.todo.models.Todo;
 import io.vieira.todo.models.TodoData;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -50,5 +52,17 @@ public class DefaultTodosServiceTest {
 
         verify(todosRepository).findById(eq(sampleId));
         verifyNoMoreInteractions(todosRepository);
+    }
+
+    @Ignore
+    @Test
+    public void shouldBeImplemented() {
+        fail("This is a test");
+    }
+
+    @Ignore
+    @Test
+    public void shouldBeAlsoImplemented() {
+        fail("This is another test");
     }
 }

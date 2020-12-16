@@ -2,13 +2,11 @@ package io.vieira.todo.mvc;
 
 import io.vieira.todo.TodosService;
 import io.vieira.todo.models.Todo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -23,9 +21,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(TodosController.class)
-public class TodosControllerTest {
+class TodosControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +31,7 @@ public class TodosControllerTest {
     private TodosService todosService;
 
     @Test
-    public void givenTodosShouldBeReturnedWhenGettingThem() throws Exception {
+    void givenTodosShouldBeReturnedWhenGettingThem() throws Exception {
         when(todosService.findTodos()).thenReturn(List.of(
                 new Todo(UUID.fromString("1f3d564d-aeb8-4fd2-ba89-0065a8f9a9b4"), "Title 1", 1, false),
                 new Todo(UUID.fromString("4641ecbd-2ef6-4b68-8254-f0cf486e4f17"), "Title 2", 2, true)
@@ -56,7 +53,7 @@ public class TodosControllerTest {
     }
 
     @Test
-    public void givenAnKnownIdShouldReturnATodo() throws Exception {
+    void givenAnKnownIdShouldReturnATodo() throws Exception {
         final var sampleId = UUID.fromString("1f3d564d-aeb8-4fd2-ba89-0065a8f9a9b4");
         when(todosService.findTodo(eq(sampleId))).thenReturn(Optional.of(new Todo(
                 sampleId, "Title 1", 1, false
