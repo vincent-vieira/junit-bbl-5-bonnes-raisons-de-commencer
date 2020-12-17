@@ -1,6 +1,5 @@
 # JUnit : 5 bonnes raisons de commencer !
-
-## BBL présenté par [Vincent Vieira](mailto:vincent.vieira@carbon-it.com)
+#### BBL présenté par [Vincent Vieira](mailto:vincent.vieira@carbon-it.com)
 
 ### Prérequis
 Afin d'avoir une expérience optimale avec ce kata, il est nécessaire *a minima* de :
@@ -9,6 +8,11 @@ Afin d'avoir une expérience optimale avec ce kata, il est nécessaire *a minima
 
 ### L'application TodoMVC
 Il s'agit d'une version simplifiée de l'application [**TodoMVC**](https://todobackend.com/), utilisée très souvent en tant qu'entraînement afin de découvrir comment concevoir des webservices REST. Ici, nous n'implémentons que deux endpoints permettant d'avoir le minimum nécessaire de logique métier qui doit être testée avec JUnit.
+
+Le projet est décomposé en trois sous-modules :
+- *initial-project* contient l'application testée **entièrement sous JUnit 4**
+- *getting-started* est un projet bac-à-sable pour expérimenter, et que nous tentions de migrer par nous-memes l'intégralité des tests vers JUnit 5
+- *refactored-solution* est un projet contenant l'application dont les tests sont migrés vers JUnit 5, avec un test sous JUnit 4 pour montrer les capacités du moteur *Vintage*
 
 ### A propos du BBL
 JUnit 5 est une [réécriture **complète** du framework de test](https://junit.org/junit5/docs/current/user-guide/#overview-what-is-junit-5). 
@@ -61,5 +65,7 @@ Dans le cadre de tests paramétrés, il est possible de combiner `@DisplayName` 
 Une fonctionnalité de [génération dynamique de noms de tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator) est en cours d'intégration dans JUnit 5 mais reste expérimentale.
 
 #### Tests imbriqués
-Une dernière fonctionnalité majeure de JUnit 5 est la possibilité de déclarer et d'exécuter des [tests imbriqués](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested), cela remplaçant le système contraignant de `Suite` présent dans JUnit 4.
-Il suffit de créer des classes imbriquées annotées avec `@org.junit.jupiter.api.Nested`, le reste est inchangé !
+Une dernière fonctionnalité majeure de JUnit 5 est la possibilité de déclarer et d'exécuter des [tests imbriqués](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested). 
+Avec JUnit 4, il était nécessaire de détourner l'utilisation de `@org.junit.runners.Suite.SuiteClasses` afin de créer une suite de test contenant l'ensemble des classes imbriquées.
+
+Désormais, il suffit de créer des classes imbriquées annotées avec `@org.junit.jupiter.api.Nested`, le reste est inchangé !
