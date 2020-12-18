@@ -1,7 +1,7 @@
 package io.vieira.todo;
 
 import io.vieira.todo.models.TodoData;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,6 +10,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class InMemoryTodosRepositoryTest {
+
+    @BeforeClass
+    public static void setupClass() {
+    }
+
+    @Before
+    public void setup() {
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+    }
+
+    @After
+    public void teardown() {
+    }
 
     @Test
     public void shouldFindTodos() {

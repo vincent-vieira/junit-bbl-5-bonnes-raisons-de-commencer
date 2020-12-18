@@ -57,12 +57,12 @@ Pour fonctionner, le test doit être néanmoins associé à une source de donné
   - `@org.junit.jupiter.params.provider.MethodSource` pour fournir des valeurs construites par une méthode statique au sein du même test, qui peut retourner une `Collection` ou un `Stream` d'`Arguments` (une classe utilitaire JUnit remplaçant un tableau de paramètres)
 
 #### Des noms de test lisibles, enfin !
-Une fonctionnalité qui manquait cruellement dans JUnit 4 était de pouvoir changer l'affichage des noms de tests ainsi que des paramètres que l'on pouvait éventuellement leur passer. Ceci causa des changements de convention de nommage au sein des tests, qui parasitaient les standards édictés au sein de Java (oui, je parle des fameux tests nommés en *snake_case* au lieu du *CamelCase*).
+Une fonctionnalité qui manquait cruellement dans JUnit 4 était de pouvoir changer l'affichage des noms de tests ainsi que des paramètres que l'on pouvait éventuellement leur passer. Ceci causa des changements de convention de nommage au sein des tests, qui parasitaient les standards édictés au sein de Java (oui, je parle des fameux tests nommés en *snake_case* au lieu du *camelCase*).
 Avec JUnit 5, il est possible de découpler le nommage du test au sein du code du nom affiché lors de la génération du rapport de tests, grâce à l'annotation `@org.junit.jupiter.api.DisplayName`. Elle peut être apposée sur une méthode ou sur la classe de test, JUnit se charge de concaténer les deux. 
 
 Dans le cadre de tests paramétrés, il est possible de combiner `@DisplayName` avec l'attribut `name` de `@ParameterizedTest` qui permet de changer l'affichage du nom de test pour chaque jeu de paramètres avec lequel il sera joué, en les affichant au milieu d'une phrase lisible par un humain par exemple.
 
-Une fonctionnalité de [génération dynamique de noms de tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator) est en cours d'intégration dans JUnit 5 mais reste expérimentale.
+Une fonctionnalité de [génération dynamique de noms de tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator) est en cours stable depuis JUnit 5.7 mais reste trop frugale à mes yeux, n'exposant que des fonctionnalités bénéfiques aux utilisateurs de tests nommés en *snake_case* (et [pas en *camelCase*](https://github.com/junit-team/junit5/issues/1595)).
 
 #### Tests imbriqués
 Une dernière fonctionnalité majeure de JUnit 5 est la possibilité de déclarer et d'exécuter des [tests imbriqués](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested). 

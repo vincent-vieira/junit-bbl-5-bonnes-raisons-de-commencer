@@ -2,8 +2,9 @@ package io.vieira.todo;
 
 import io.vieira.todo.models.Todo;
 import io.vieira.todo.models.TodoData;
-import org.junit.Ignore;
+import org.junit.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.migrationsupport.conditions.IgnoreCondition;
 import org.mockito.InjectMocks;
@@ -23,6 +24,22 @@ import static org.mockito.Mockito.*;
 @ExtendWith(IgnoreCondition.class)
 @DisplayName("Todos service")
 class DefaultTodosServiceTest {
+
+    @BeforeAll
+    static void setupClass() {
+    }
+
+    @BeforeEach
+    void setup() {
+    }
+
+    @AfterAll
+    static void teardownClass() {
+    }
+
+    @AfterEach
+    void teardown() {
+    }
 
     @Mock
     private TodosRepository todosRepository;
